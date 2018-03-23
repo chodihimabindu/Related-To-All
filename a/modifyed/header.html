@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>Title of the document</title>
+<script>
+	function startTime() {
+		var today = new Date();
+		var h = today.getHours();
+		var m = today.getMinutes();
+		var s = today.getSeconds();
+		var ampm = h >= 12 ? 'PM' : 'AM';
+		h = h % 12;
+		h = h ? h : 12; // the hour '0' should be '12'
+		m = m < 10 ? '0' + m : m;
+		s = s < 10 ? '0' + s : s;
+		h = h < 10 ? '0' + h : h;
+		document.getElementById('time').innerHTML = h + ":" + m + ":" + s + " "
+				+ ampm;
+		document.getElementById('time').style.fontWeight = 'bold';
+		var t = setTimeout(startTime, 500);
+	}
+	function checkTime(i) {
+		if (i < 10) {
+			i = "0" + i
+		}
+		; // add zero in front of numbers < 10
+		return i;
+	}
+	function dateFetch() {
+		var dateformat = new Date();
+		var day = dateformat.getDate();
+		var mon = dateformat.getMonth();
+		var year = dateformat.getFullYear();
+		document.getElementById('date').innerHTML = day + "/" + mon + "/"
+				+ year;
+		document.getElementById('date').style.fontWeight = 'bold';
+	}
+</script>
+<style>
+#main {
+	width: 800px;
+	height: 600px;
+	font-weight: 100;
+	background-color: #000;
+	color:#9b9b9b;
+}
+header {
+	height: 35px;
+	background-color: #323232;
+	padding-top: 8px;
+}
+</style>
+</head>
+
+<body onload="startTime(); dateFetch();">
+	<div id="main">
+		<header>
+			<div class="row">
+				<div class="col-sm-4">
+					<strong><style type="font-size:18px"></style>Cycle In Progress</strong>
+				</div>
+				<div class="col-sm-4" id="time" style="text-align: center; font-size:18px"></div>
+				<div class="col-sm-4" id="date" style="text-align: right; font-size:18px "></div>
+			</div>
+		</header>
+	</div>
+</body>
+
+</html>

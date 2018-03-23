@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Countdown</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<meta charset="UTF-8">
+
+
+<script type="text/javascript">
+// set minutes
+var mins = 47;
+ 
+// calculate the seconds (don't change this! unless time progresses at a different speed for you...)
+var secs = mins * 60;
+function countdown() {
+	setTimeout('Decrement()',1000);
+}
+function Decrement() {
+	if (document.getElementById) {
+		minutes = document.getElementById("minutes");
+		seconds = document.getElementById("seconds");
+		// if less than a minute remaining
+		if (seconds < 59) {
+			seconds.value = secs;
+		} else {
+			minutes.value = getminutes();
+			seconds.value = getseconds();
+		}
+		secs--;
+		setTimeout('Decrement()',1000);
+	}
+}
+function getminutes() {
+	// minutes is seconds divided by 60, rounded down
+	mins = Math.floor(secs / 60);
+	return mins;
+}
+function getseconds() {
+	// take mins remaining (as seconds) away from total seconds remaining
+	return secs-Math.round(mins *60);
+}
+</script>
+
+<script>
+	function startTime() {
+		var today = new Date();
+		var h = today.getHours();
+		var m = today.getMinutes();
+		var s = today.getSeconds();
+		var ampm = h >= 12 ? 'PM' : 'AM';
+		h = h % 12;
+		h = h ? h : 12; // the hour '0' should be '12'
+		m = m < 10 ? '0' + m : m;
+		s = s < 10 ? '0' + s : s;
+		h = h < 10 ? '0' + h : h;
+		document.getElementById('time').innerHTML = h + ":" + m + ":" + s + " "
+				+ ampm;
+		document.getElementById('time').style.fontWeight = 'bold';
+		var t = setTimeout(startTime, 500);
+	}
+	function checkTime(i) {
+		if (i < 10) {
+			i = "0" + i
+		}
+		; // add zero in front of numbers < 10
+		return i;
+	}
+	function dateFetch() {
+		var dateformat = new Date();
+		var day = dateformat.getDate();
+		var mon = dateformat.getMonth();
+		var year = dateformat.getFullYear();
+		document.getElementById('date').innerHTML = day + "/" + mon + "/"
+				+ year;
+		document.getElementById('date').style.fontWeight = 'bold';
+	}
+</script>
+<style>
+#main {
+	width: 800px;
+	height: 600px;
+	font-weight: 100;
+	background-color: #000;
+	color:#9b9b9b;
+}
+header {
+	height: 35px;
+	background-color: #323232;
+	padding-top: 8px;
+}
+
+.algn{
+
+	margin-top:83px;
+
+	color:red;
+
+}
+
+.button {
+	background-color: #323232;
+	height: 75px;
+	width: 380px;
+	border-radius: 10px;
+	margin-right: 5px;
+	text-align: center;
+	color: white;
+	padding-top: 25px;
+	font-size:17px;
+	font-weight: bold;
+	display: inline-block;
+}
+</style>
+</head>
+
+<body onload="startTime(); dateFetch();">
+	<div id="main">
+		<header>
+			<div class="row">
+				<div class="col-sm-4">
+					<strong><style type="font-size:18px"></style>Cycle In Progress</strong>
+				</div>
+				<div class="col-sm-4" id="time" style="text-align: center; font-size:18px"></div>
+				<div class="col-sm-4" id="date" style="text-align: right; font-size:18px "></div>
+			</div>
+		</header>
+
+		<div id="algn" >
+
+	<div id="timer" style=" text-align: center;font-size:200px; font-weight:bold;border-color:#000;  ">
+
+	 <input id="minutes" type="text" style="border: none; background-color:#000;font-size: 200px ; font-weight: bold; width: 220px ; color: white"> : 
+	 <input id="seconds" type="text" style="border: none; background-color:#000; font-size: 200px; font-weight: bold; width: 220px; color: white"> <h4> <p> Time <br>
+	 	     																															   Remaining </h4>
+	 </p> 
+
+		
+	</div> 
+	<br><br>
+
+	
+
+     <div class="row" >
+		<div class="button" style="padding: none; ">Cancle Cycle</div>
+		<div class="button" style="padding: none; ">Process Parameters</div>
+	 </div>
+
+	</div>
+
+	</div>
+
+	
+
+
+
+	
+	<script >
+		countdown();
+	</script>
+</body>
+
+</html>
