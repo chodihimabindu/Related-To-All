@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <script type="text/javascript">
+var chart;
+var dataPoints=[];
+var x1=0;
+  window.onload = function () {
+   chart = new CanvasJS.Chart("chartContainer",
+    {
+
+      title:{
+      text: "Heart Rate moniter"
+      },
+       data: [
+      {
+        type: "line",
+
+        dataPoints: dataPoints
+      }
+      ]
+    });
+
+    chart.render();
+  }
+function update(){
+	x1 = x1+1;
+	var y1 = Math.floor(Math.random() * 300);
+	dataPoints.push({x:x1,y:y1});
+	chart.render();
+}
+  </script>
+ <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+  <center><div id="chartContainer" style="height: 300px; width: 40%;"></center>
+  </div>
+	<div onClick='update()'>Click</div>
+</body>
+</html>
